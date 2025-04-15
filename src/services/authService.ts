@@ -24,3 +24,37 @@ export const loginService = async(email: string, password: string) => {
 
     return {token, user}
 };
+
+
+export const registerController = async(userName: string, firstName: string, lastName: string, email: string, password: string) => {
+
+    const validateEmail = await UserModel.findOne({where: {email}});
+    const validateUsername = await UserModel.findOne({where: {userName}})
+    // const validatePassword = UserModel.findOne({where: {password}})
+
+    
+  if (validateEmail) {
+    throw new Error("El correo ya existe!");
+  }
+
+  if (validateUsername) {
+    throw new Error("El nombre de usuario ya existe!");
+  }
+
+  const hashPassword = await bcrypt.hash(password, 10)
+
+  const userCreated = UserModel.create({
+    userName,
+    email,
+    password: hashPassword
+  })
+
+  await UserModel.save(userCreated);
+
+  return {
+    id: userCreated.id,
+    username: userCreated.userName,
+    email: userCreated.email
+  }
+
+}
