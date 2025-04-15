@@ -12,12 +12,10 @@ export const AppDataSource = new DataSource({
     database:  PGDATABASE,
     synchronize: true,
     logging: true,
-    entities: ["dist/entities/**/*.js"],
+    entities: [User, Product],
     subscribers: [],
     migrations: [],
 })
 
 export const ProductModel = AppDataSource.getRepository(Product);
 export const UserModel = AppDataSource.getRepository(User);
-
-

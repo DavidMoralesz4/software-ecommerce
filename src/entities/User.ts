@@ -5,7 +5,7 @@ export class User {
     @PrimaryGeneratedColumn()
     declare id: number
 
-    @Column()
+    @Column({ unique: true })
     declare userName: string
 
     @Column()
@@ -14,7 +14,7 @@ export class User {
     @Column()
     declare lastName: string
 
-    @Column()
+    @Column({ unique: true })
     declare email: string
 
     @Column()
