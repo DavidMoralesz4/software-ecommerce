@@ -9,7 +9,7 @@ export const loginController = async (req: Request, res: Response) => {
       return
     }
 
-    const { token, user } = await loginService(email, password);
+    const { token } = await loginService(email, password);
 
     res.cookie("my_cookie_acces", token, {
       sameSite: "lax",
