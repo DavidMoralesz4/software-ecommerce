@@ -1,13 +1,15 @@
 import { DataSource } from "typeorm";
 import { Product } from "../entities/Product";
+import { PGDATABASE, PGHOST, PGPASSWORD, PGPORT, PGUSER } from "./dotenv";
+import { User } from "../entities/User";
 
 export const AppDataSource = new DataSource({
     type: "postgres",
-    host: "localhost",
-    port: 5432,
-    username: "test",
-    password: "test",
-    database: "test",
+    host: PGHOST,
+    port: Number(PGPORT),
+    username: PGUSER,
+    password: PGPASSWORD,
+    database:  PGDATABASE,
     synchronize: true,
     logging: true,
     entities: ["dist/entities/**/*.js"],
@@ -16,5 +18,6 @@ export const AppDataSource = new DataSource({
 })
 
 export const ProductModel = AppDataSource.getRepository(Product);
+export const UserModel = AppDataSource.getRepository(User);
 
 

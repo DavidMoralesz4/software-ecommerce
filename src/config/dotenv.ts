@@ -1,7 +1,6 @@
-import dotenv from 'dotenv'
+import dotenv from "dotenv";
 
-dotenv.config()
+dotenv.config();
 
-export const { PORT } = process.env
-
-
+export const { PORT, PGUSER, PGDATABASE, PGHOST, PGPASSWORD, PGPORT } =
+  process.env;
